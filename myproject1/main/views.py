@@ -8,3 +8,6 @@ def index(response):
 
 def v1(response):
     return HttpResponse("<h1>view 1!</h1>")
+
+def v2(response):
+    return HttpResponse("<h1>view 2!</h1> <button> Press </button>")
