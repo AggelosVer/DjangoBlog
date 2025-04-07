@@ -8,7 +8,7 @@ class Status(models.TextChoices):
 # Create your models here.
 class Post(models.Model):
  author= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
- tittle = models.CharField(max_length=255)
+ title = models.CharField(max_length=255)
  slug=models.SlugField()
  body = models.TextField()
  publish = models.DateTimeField()
