@@ -31,7 +31,7 @@
                                 </a>
                             </h3>
                             <div class="mt-5">
-                                <p class="text-sm text-gray-600">{{ post.body }}</p> <!-- This will display the full content -->
+                                <p class="text-sm text-gray-600">{{ post.body|truncatewords:60 }}</p> <!-- This will display the full content -->
                             </div>
                         </div>
                     </article>
