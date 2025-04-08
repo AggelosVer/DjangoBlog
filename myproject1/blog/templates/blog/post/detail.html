@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="bg-white py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+            <article class="mx-auto max-w-2xl">
+
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">{{ post.title }}</h1>
+                
+
+                <p class="mt-4 text-sm text-gray-500">
+                    Published on {{ post.publish|date:"M d, Y" }}
+                </p>
+
+
+                <div class="mt-8 text-gray-700 text-lg">
+                    <p>{{ post.body }}</p>
+                </div>
+
+
+                <div class="mt-12">
+                    <a href="{% url 'blog:post_list' %}" class="text-sm font-medium text-blue-600 hover:text-blue-500">
+                        Back to  post list
+                    </a>
+                </div>
+            </article>
+        </div>
+    </div>
+</body>
+
+</html>

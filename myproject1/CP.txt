@@ -1,6 +1,6 @@
 (django-admin startproject myproject1)
 cd myproject1
-python manage.py runserver 9000
+python manage.py runserver 8001
 
 
 
