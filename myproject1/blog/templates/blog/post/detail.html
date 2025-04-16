@@ -25,13 +25,20 @@
                 <div class="mt-8 text-gray-700 text-lg">
                     <p>{{ post.body }}</p>
                 </div>
+                <div class="flex justify-between mt-10">
+                    <!-- Tags -->
+                     //Tags
+                </div>
 
-
-                <div class="mt-12">
-                    <a href="{% url 'blog:post_list' %}" class="text-sm font-medium text-blue-600 hover:text-blue-500">
-                        Back to  post list
+                <div class="flex justify-between mt-10">
+                    <a href="{% url 'blog:post_list' %}" class="inline-block px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-red-800 transition">
+                       Back to post list
+                    </a>
+                    <a href="{% url 'blog:post_share' post.id %}" class="inline-block px-4 py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition">
+                        Share via email
                     </a>
                 </div>
+                
             </article>
         </div>
     </div>
