@@ -7,4 +7,3 @@ python manage.py runserver 8001
 python manage.py makemigrations // antigrafei ta models sto fakelo articles
 python manage.py migrate // pernaei tis allages stin bash
 
-=

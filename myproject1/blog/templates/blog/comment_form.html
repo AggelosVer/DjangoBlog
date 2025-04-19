@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leave a comment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="max-w-2xl mx-auto mt-16 bg-white p-8 rounded shadow">
+        <h1 class="text-3xl font-bold mb-6 text-center">
+            Leave a comment on "{{ post.title }}"
+        </h1>
+
+        <form method="post" class="space-y-6">
+          {% csrf_token %}
+      
+          <div>
+              <label for="id_name" class="block text-sm font-medium">Name:</label>
+              {{ form.name|add_class:"w-full mt-1 p-2 border border-gray-300 rounded" }}
+          </div>
+      
+          <div>
+              <label for="id_email" class="block text-sm font-medium">Email:</label>
+              {{ form.email|add_class:"w-full mt-1 p-2 border border-gray-300 rounded" }}
+          </div>
+      
+          <div>
+              <label for="id_body" class="block text-sm font-medium">Body:</label>
+              {{ form.body|add_class:"w-full mt-1 p-2 border border-gray-300 rounded h-32" }}
+          </div>
+      
+          <button type="submit"
+              class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+              Post Comment
+          </button>
+      </form>
+      
+
+        <div class="mt-8 text-sm text-center space-x-4">
+            <a href="{% url 'blog:post_list' %}" class="text-blue-600 hover:underline">Back to post list</a>
+            <a href="{% url 'blog:post_detail' year=post.publish.year month=post.publish.month day=post.publish.day post=post.slug %}"
+               class="text-blue-600 hover:underline">Back to post detail</a>
+        </div>
+    </div>
+
+</body>
+</html>

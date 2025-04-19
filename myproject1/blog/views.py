@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
-from .models import Post
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Post, Comment
 from .forms import EmailPostForm
 from django.core.mail import send_mail
+from .forms import CommentForm
 
 
 
@@ -47,3 +48,19 @@ def post_share(request, post_id):
         'form': form,
         'sent': sent
     })
+
+def post_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id) #status='published'
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+            return redirect(post)  
+    else:
+        form = CommentForm()
+
+    return render(request, 'blog/comment_form.html', {'form': form, 'post': post})
