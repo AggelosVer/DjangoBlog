@@ -19,8 +19,9 @@ from django.urls import path, include
 from django.shortcuts import redirect
 
 urlpatterns = [
-    path('', lambda request: redirect('blog/', permanent=False)), 
+    path('', lambda request: redirect('account/login', permanent=False)), 
     path('admin/', admin.site.urls),
     # path('', include("main.urls")),
     path('blog/', include('blog.urls', namespace='blog')),
+    path('account/', include('account.urls')),
 ]
