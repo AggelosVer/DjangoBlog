@@ -6,28 +6,26 @@ from django.core.mail import send_mail
 from .forms import CommentForm
 from django.contrib.auth.decorators import login_required
 
-@login_required
-def post_comment(request, post_id):
-    post = get_object_or_404(Post, id=post_id)
-
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.post = post
-            new_comment.name = request.user.username
-            new_comment.email = request.user.email
-            new_comment.save()
-            return redirect(post.get_absolute_url())  # make sure post has this method
-    else:
-        form = CommentForm()
-
-    return render(request, 'blog/comment_form.html', {'form': form, 'post': post})
-
-
-
-
 # Create your views here.
+
+# @login_required
+# def post_comment(request, post_id):
+#     post = get_object_or_404(Post, id=post_id)
+
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             new_comment = form.save(commit=False)
+#             new_comment.post = post
+#             new_comment.name = request.user.username
+#             new_comment.email = request.user.email
+#             new_comment.save()
+#             return redirect(post.get_absolute_url())  
+#     else:
+#         form = CommentForm()
+
+#     return render(request, 'blog/comment_form.html', {'form': form, 'post': post})
+
 
 def post_list(request):
     posts_list = Post.objects.all().order_by('-publish')
@@ -94,21 +92,3 @@ def post_share(request, post_id):
         'form': form,
         'sent': sent
     })
-
-# def post_comment(request, post_id):
-#     post = get_object_or_404(Post, id=post_id) #status='published'
-
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-
-#             new_comment = form.save(commit=False)
-#             new_comment.post = post
-#             new_comment.name = request.user.username
-#             new_comment.email = request.user.email
-#             new_comment.save()
-#             return redirect(post)  
-#     else:
-#         form = CommentForm()
-
-#     return render(request, 'blog/comment_form.html', {'form': form, 'post': post})
