@@ -8,28 +8,10 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-# @login_required
-# def post_comment(request, post_id):
-#     post = get_object_or_404(Post, id=post_id)
-
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             new_comment = form.save(commit=False)
-#             new_comment.post = post
-#             new_comment.name = request.user.username
-#             new_comment.email = request.user.email
-#             new_comment.save()
-#             return redirect(post.get_absolute_url())  
-#     else:
-#         form = CommentForm()
-
-#     return render(request, 'blog/comment_form.html', {'form': form, 'post': post})
-
 
 def post_list(request):
     posts_list = Post.objects.all().order_by('-publish')
-    #selidopoihsh
+    #paginator
     paginator = Paginator(posts_list, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -50,8 +32,8 @@ def post_detail(request, year, month, day, post):
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.post = post
-            new_comment.name = request.user.username  # pairnei to onoma tou xristi
-            new_comment.email = request.user.email    # pairnei to email tou xristi
+            new_comment.name = request.user.username 
+            new_comment.email = request.user.email   
             new_comment.save()
             form = CommentForm()  
     else:
